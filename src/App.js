@@ -1,8 +1,9 @@
-
+import SketchApp from './components/SketchApp';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
+      <SketchApp />
     </div>
   );
 }
