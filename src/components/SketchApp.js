@@ -14,16 +14,19 @@ const SketchApp = () => {
   };
 
     const gridTemplate = {
-      border: '20px solid #ce1212',
       display: 'inline-grid',
-      gridTemplateColumns: `repeat(${grid}, 1fr)`
+      gridTemplateColumns: `repeat(${grid}, 1fr)`,
+      width: '500px',
+      height: '500px'
     };
 
   return (
-    <div>
-      <h3>Etch-A-Sketch</h3>
+    <div className='container'>
+      <h2>Etch-A-Sketch</h2>
       <ButtonSection />
-      <div style={gridTemplate}>{gridBoard(grid * grid)}</div>
+      <div className='board'>
+        <div style={gridTemplate}>{gridBoard(grid * grid)}</div>
+      </div>
     </div>
   );
 };

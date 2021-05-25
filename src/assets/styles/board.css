@@ -1,9 +1,36 @@
-.buttons{
- margin: 20px;
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 600px;
+  background-color: #810000;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.grid-element{
- background-color: white;
- border: 1px solid black;
+.buttons {
+  margin-bottom: 20px;
 }
 
+button {
+  padding: 10px;
+  margin: 8px;
+  background-color: #1b1717;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+button:hover {
+ background-color: #3e3838;
+}
+
+button:active {
+ background-color: #810000
+}
+
+.grid-element {
+  background-color: white;
+  border: 1px solid black;
+}
