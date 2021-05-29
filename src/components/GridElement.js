@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const GridElement = () => {
-  const [color, setColor] = useState({ backgroundColor: 'white' });
-  const mouseEnter = { backgroundColor: 'black' };
+const GridElement = ({ isRandom, isCleared, setIsCleared }) => {
+  const [color, setcolor] = useState();
+
+  const randomizeColor =
+    '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+  useEffect(() => {
+    if (isCleared) {
+      setcolor({ backgroundColor: 'white' });
+    }
+  }, [isCleared]);
+
+  const changeColor = () => {
+    if (isRandom) {
+      setcolor({ backgroundColor: randomizeColor });
+    } else {
+      setcolor({ backgroundColor: 'black' });
+    }
+    if (isCleared) {
+      setIsCleared(false);
+    }
+  };
 
   return (
     <div
-      className='grid-element'
       style={color}
-      onMouseEnter={() => setColor(mouseEnter)}
+      className='grid-element'
+      onMouseEnter={changeColor}
     ></div>
   );
 };
