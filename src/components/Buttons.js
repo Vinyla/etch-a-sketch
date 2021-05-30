@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Buttons = ({resetBoard, setIsRandom, setIsCleared}) => {
+const Buttons = ({ resetBoard, setIsRandom, setIsCleared }) => {
   return (
     <div className='buttons'>
       <button onClick={resetBoard}>Reset Board</button>
