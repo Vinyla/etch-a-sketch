@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import Buttons from './Buttons';
 import GridElement from './GridElement';
+import Popup from './Popup';
 
 const SketchApp = () => {
-  const [grid, setGrid] = useState(16);
+  const min = 16;
+  const max = 100;
+  const [grid, setGrid] = useState(min);
   const [isRandom, setIsRandom] = useState(false);
   const [isCleared, setIsCleared] = useState(false);
+  const [openPopup, setIsOpenPopup] = useState(false);
+  const [inputValue, setInputValue] = useState();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const gridBoard = (grid) => {
     const gridArray = [];
@@ -22,15 +28,24 @@ const SketchApp = () => {
     return gridArray;
   };
 
-  const resetBoard = () => {
+  const submitGridSize = (e) => {
     setIsCleared(true);
-    let gridNumbers = prompt('How many square per sides? min:16 max:100');
-    if (gridNumbers < 16 || gridNumbers > 100) {
-      alert('min 16 and max 100');
-    } else if (gridNumbers) {
-      setGrid(gridNumbers);
-    } else setGrid(grid);
+    setIsOpenPopup(false);
+    if (inputValue < 16 || inputValue > 100) {
+      setErrorMessage(true);
+    } else setGrid(inputValue);
   };
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  // let gridNumbers = prompt('How many square per sides? min:16 max:100');
+  // if (gridNumbers < 16 || gridNumbers > 100) {
+  //   alert('min 16 and max 100');
+  // } else if (gridNumbers) {
+  //   setGrid(gridNumbers);
+  // } else setGrid(grid);
 
   // grid style
   const gridTemplate = {
@@ -44,10 +59,18 @@ const SketchApp = () => {
     <div className='container'>
       <h2>Etch-A-Sketch</h2>
       <Buttons
+        setIsOpenPopup={setIsOpenPopup}
         setIsRandom={setIsRandom}
         setIsCleared={setIsCleared}
-        resetBoard={resetBoard}
       />
+      {openPopup && (
+        <Popup
+          setIsOpenPopup={setIsOpenPopup}
+          submitGridSize={submitGridSize}
+          handleChange={handleChange}
+          errorMessage={errorMessage}
+        />
+      )}
       <div className='board'>
         <div style={gridTemplate}>{gridBoard(grid * grid)}</div>
       </div>
