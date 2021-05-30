@@ -40,13 +40,6 @@ const SketchApp = () => {
     setInputValue(e.target.value);
   };
 
-  // let gridNumbers = prompt('How many square per sides? min:16 max:100');
-  // if (gridNumbers < 16 || gridNumbers > 100) {
-  //   alert('min 16 and max 100');
-  // } else if (gridNumbers) {
-  //   setGrid(gridNumbers);
-  // } else setGrid(grid);
-
   // grid style
   const gridTemplate = {
     display: 'inline-grid',
