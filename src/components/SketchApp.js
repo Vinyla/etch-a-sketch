@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Buttons from './Buttons';
 import GridElement from './GridElement';
 
 const SketchApp = () => {
@@ -42,12 +43,11 @@ const SketchApp = () => {
   return (
     <div className='container'>
       <h2>Etch-A-Sketch</h2>
-      <div className='buttons'>
-        <button onClick={resetBoard}>Reset Board</button>
-        <button onClick={() => setIsRandom(false)}>Black</button>
-        <button onClick={() => setIsRandom(true)}>Random Color</button>
-        <button onClick={() => setIsCleared(true)}>Clear Board</button>
-      </div>
+      <Buttons
+        setIsRandom={setIsRandom}
+        setIsCleared={setIsCleared}
+        resetBoard={resetBoard}
+      />
       <div className='board'>
         <div style={gridTemplate}>{gridBoard(grid * grid)}</div>
       </div>
