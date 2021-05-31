@@ -10,7 +10,7 @@ const SketchApp = () => {
   const [isRandom, setIsRandom] = useState(false);
   const [isCleared, setIsCleared] = useState(false);
   const [openPopup, setIsOpenPopup] = useState(false);
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
 
   const gridBoard = (grid) => {
@@ -29,11 +29,17 @@ const SketchApp = () => {
   };
 
   const submitGridSize = (e) => {
-    setIsCleared(true);
-    setIsOpenPopup(false);
-    if (inputValue < 16 || inputValue > 100) {
+    setInputValue('');
+    if (inputValue < min || inputValue > max) {
+      setIsOpenPopup(true);
       setErrorMessage(true);
-    } else setGrid(inputValue);
+      setIsCleared(false);
+    } else if (inputValue) {
+      setGrid(inputValue);
+      setErrorMessage(false);
+      setIsCleared(true);
+      setIsOpenPopup(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -62,6 +68,8 @@ const SketchApp = () => {
           submitGridSize={submitGridSize}
           handleChange={handleChange}
           errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          inputValue={inputValue}
         />
       )}
       <div className='board'>
